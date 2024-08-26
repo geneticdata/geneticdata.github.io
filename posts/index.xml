@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>Posts on shunnna</title>
+    <link>https://geneticdata.github.io/posts/</link>
+    <description>Recent content in Posts on shunnna</description>
+    <generator>Hugo</generator>
+    <language>en-us</language>
+    <atom:link href="https://geneticdata.github.io/posts/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>1 The importance of communication in note-taking remains essential</title>
+      <link>https://geneticdata.github.io/1-the-importance-of-communication-in-note-taking-remains-essential/</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      <guid>https://geneticdata.github.io/1-the-importance-of-communication-in-note-taking-remains-essential/</guid>
+      <description>1 노트 작성에서 소통의 중요성은 여전히 유효하다&#xA;아이디어를 최대한 간결하고 기본적인 형태로 정리하는 데에만 집중하는 과정에서 아이디어의 핵심적인 요소만을 남기려 하게 되고, 노트 시스템의 본래 목적이었던 깊이 있는 사고와 대화는 희생될 수 있다.&#xA;시간을 내어 노트를 작성하고 아이디어를 정리하는 과정이 단순한 정보 저장으로 변질되면서, Zettelkasten과의 소통이 상호작용이 아닌 &amp;lsquo;사전에 준비된 정보의 교환(an exchange of prepackaged commodities)&amp;lsquo;으로 전락할 위험이 있지만, 여전히 그 소통의 중요성은 유지되고 있다. (Doto2004, 50)</description>
+    </item>
+    <item>
+      <title>2 Consider the many possible connections between core concepts</title>
+      <link>https://geneticdata.github.io/2-consider-the-many-possible-connections-between-core-concepts/</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      <guid>https://geneticdata.github.io/2-consider-the-many-possible-connections-between-core-concepts/</guid>
+      <description>2 핵심 개념들의 다양한 연결 가능성을 고려해야 한다&#xA;제시된 두 가지 아이디어(현재와 &amp;lsquo;이전&amp;rsquo;으로 참조된 아이디어)는 긴 형식의 주장을 전개하는 데 도움이 되는 일련의 시작이지만, 핵심으로 축소된 아이디어는 다양한 방식으로 연결될 수 있고 노트의 링크가 원래 맥락에서 벗어나는 경우가 많으므로 이러한 순서가 전부는 아니다.&#xA;The two ideas presented - one current and one referenced as &amp;ldquo;previous&amp;rdquo; - start a sequence that can help develop long-form arguments, but such sequences are not exclusive,a s ideas reduced to their core can connect in various ways, with links in the notes often diverging from their original context.</description>
+    </item>
+  </channel>
+</rss>
