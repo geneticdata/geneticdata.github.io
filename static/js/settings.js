@@ -1,1 +1,0 @@
-var sidebar_collapsed=false
