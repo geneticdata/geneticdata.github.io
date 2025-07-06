@@ -11,7 +11,7 @@
 		<loc>https://geneticdata.github.io/docs/Thesis/</loc>
 	</url>
 	<url>
-		<loc>https://geneticdata.github.io/docs/Thesis/00-overview/</loc>
+		<loc>https://geneticdata.github.io/docs/Thesis/00-Overview/</loc>
 		<lastmod>2025-07-06T13:23:42.10993</lastmod>
 	</url>
 	<url>
@@ -25,14 +25,26 @@
 	</url>
 	<url>
 		<loc>https://geneticdata.github.io/docs/Thesis/Ch4/1-Introduction/1-1-Background-Purpose/1-harman-ooo-impact-wiscombe-gage/</loc>
+		<lastmod>2024-01-01</lastmod>
+	</url>
+	<url>
+		<loc>https://geneticdata.github.io/docs/Thesis/Ch4/1-Introduction/1-1-Background-Purpose/1_Harman-OOO-Impact-Wiscombe-Gage/</loc>
 		<lastmod>2025-07-06T00:39:01.596927</lastmod>
 	</url>
 	<url>
 		<loc>https://geneticdata.github.io/docs/Thesis/Ch4/1-Introduction/1-1-Background-Purpose/2-wiscombe-architecture-withdrawal-concept/</loc>
+		<lastmod>2024-01-02</lastmod>
+	</url>
+	<url>
+		<loc>https://geneticdata.github.io/docs/Thesis/Ch4/1-Introduction/1-1-Background-Purpose/2_Wiscombe-Architecture-Withdrawal-Concept/</loc>
 		<lastmod>2025-07-06T00:39:12.56958</lastmod>
 	</url>
 	<url>
 		<loc>https://geneticdata.github.io/docs/Thesis/Ch4/1-Introduction/1-1-Background-Purpose/3-horizontal-tension-aesthetic-interaction/</loc>
+		<lastmod>2024-01-03</lastmod>
+	</url>
+	<url>
+		<loc>https://geneticdata.github.io/docs/Thesis/Ch4/1-Introduction/1-1-Background-Purpose/3_Horizontal-Tension-Aesthetic-Interaction/</loc>
 		<lastmod>2025-07-06T00:47:28.78394</lastmod>
 	</url>
 	<url>
@@ -64,10 +76,14 @@
 	</url>
 	<url>
 		<loc>https://geneticdata.github.io/docs/Thesis/Ch4/1-Introduction/1-2-Method-Scope/9-object-autonomy-ooo-architecture-alternatives/</loc>
+		<lastmod>2024-01-09</lastmod>
+	</url>
+	<url>
+		<loc>https://geneticdata.github.io/docs/Thesis/Ch4/1-Introduction/1-2-Method-Scope/9_Object-Autonomy-OOO-Architecture-Alternatives/</loc>
 		<lastmod>2025-07-05T22:42:16.679702</lastmod>
 	</url>
 	<url>
-		<loc>https://geneticdata.github.io/docs/Thesis/Ch4/1-Introduction/1-overview/</loc>
+		<loc>https://geneticdata.github.io/docs/Thesis/Ch4/1-Introduction/1-Overview/</loc>
 		<lastmod>2025-07-06T11:03:18.934657</lastmod>
 	</url>
 	<url>
@@ -78,10 +94,18 @@
 	</url>
 	<url>
 		<loc>https://geneticdata.github.io/docs/Thesis/Ch4/2-OOO-Architecture-Tension/2-1-OOO-Tension-Concepts/11-ooo-design-withdrawn-reality-vs-direct/</loc>
+		<lastmod>2024-01-11</lastmod>
+	</url>
+	<url>
+		<loc>https://geneticdata.github.io/docs/Thesis/Ch4/2-OOO-Architecture-Tension/2-1-OOO-Tension-Concepts/11_OOO-Design-Withdrawn-Reality-vs-Direct/</loc>
 		<lastmod>2025-07-05T22:42:35.588083</lastmod>
 	</url>
 	<url>
 		<loc>https://geneticdata.github.io/docs/Thesis/Ch4/2-OOO-Architecture-Tension/2-1-OOO-Tension-Concepts/12-vertical-tension-philosophy-ooo-connection/</loc>
+		<lastmod>2024-01-12</lastmod>
+	</url>
+	<url>
+		<loc>https://geneticdata.github.io/docs/Thesis/Ch4/2-OOO-Architecture-Tension/2-1-OOO-Tension-Concepts/12_Vertical-Tension-Philosophy-OOO-Connection/</loc>
 		<lastmod>2025-07-05T22:42:54.610687</lastmod>
 	</url>
 	<url>
@@ -93,55 +117,16 @@
 		<lastmod>2025-06-29T22:54:46.652879</lastmod>
 	</url>
 	<url>
-		<loc>https://geneticdata.github.io/docs/Thesis/Ch4/2-OOO-Architecture-Tension/2-overview/</loc>
+		<loc>https://geneticdata.github.io/docs/Thesis/Ch4/2-OOO-Architecture-Tension/2-Overview/</loc>
 		<lastmod>2025-07-06T11:11:51.360868</lastmod>
 	</url>
 	<url>
-		<loc>https://geneticdata.github.io/docs/Thesis/Ch4/ch4-overview/</loc>
+		<loc>https://geneticdata.github.io/docs/Thesis/Ch4/Ch4-Overview/</loc>
 		<lastmod>2025-07-06T13:25:02.893617</lastmod>
 	</url>
 	<url>
 		<loc>https://geneticdata.github.io/docs/Thesis/Ch4/structure-note/</loc>
 		<lastmod>2025-07-06T13:24:26.447288</lastmod>
-	</url>
-	<url>
-		<loc>https://geneticdata.github.io/docs/git/</loc>
-	</url>
-	<url>
-		<loc>https://geneticdata.github.io/docs/git/hooks/</loc>
-	</url>
-	<url>
-		<loc>https://geneticdata.github.io/docs/git/info/</loc>
-	</url>
-	<url>
-		<loc>https://geneticdata.github.io/docs/git/objects/</loc>
-	</url>
-	<url>
-		<loc>https://geneticdata.github.io/docs/git/objects/info/</loc>
-	</url>
-	<url>
-		<loc>https://geneticdata.github.io/docs/git/objects/pack/</loc>
-	</url>
-	<url>
-		<loc>https://geneticdata.github.io/docs/git/refs/</loc>
-	</url>
-	<url>
-		<loc>https://geneticdata.github.io/docs/git/refs/heads/</loc>
-	</url>
-	<url>
-		<loc>https://geneticdata.github.io/docs/git/refs/tags/</loc>
-	</url>
-	<url>
-		<loc>https://geneticdata.github.io/docs/obsidian/</loc>
-	</url>
-	<url>
-		<loc>https://geneticdata.github.io/docs/obsidian/plugins/</loc>
-	</url>
-	<url>
-		<loc>https://geneticdata.github.io/docs/obsidian/plugins/dataview/</loc>
-	</url>
-	<url>
-		<loc>https://geneticdata.github.io/docs/obsidian/plugins/notes-explorer/</loc>
 	</url>
 	<url>
 		<loc>https://geneticdata.github.io/docs/welcome/</loc>
