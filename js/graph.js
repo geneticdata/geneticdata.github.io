@@ -155,3 +155,125 @@ graph.once("afterDrawing", function () {
         });
     }
 });
+
+// 줌 컨트롤 버튼 추가
+function addZoomControls() {
+    // 컨트롤 패널 생성
+    const controlPanel = document.createElement('div');
+    controlPanel.id = 'graph-controls';
+    controlPanel.style.position = 'absolute';
+    controlPanel.style.top = '10px';
+    controlPanel.style.right = '10px';
+    controlPanel.style.zIndex = '1000';
+    controlPanel.style.display = 'flex';
+    controlPanel.style.flexDirection = 'column';
+    controlPanel.style.gap = '5px';
+
+    // 줌 인 버튼
+    const zoomInBtn = document.createElement('button');
+    zoomInBtn.textContent = '+';
+    zoomInBtn.title = 'Zoom In';
+    zoomInBtn.style.width = '35px';
+    zoomInBtn.style.height = '35px';
+    zoomInBtn.style.fontSize = '18px';
+    zoomInBtn.style.border = '1px solid #ccc';
+    zoomInBtn.style.backgroundColor = '#fff';
+    zoomInBtn.style.cursor = 'pointer';
+    zoomInBtn.style.borderRadius = '3px';
+    zoomInBtn.onclick = () => {
+        const currentScale = graph.getScale();
+        graph.moveTo({ scale: currentScale * 1.2 });
+    };
+
+    // 줌 아웃 버튼
+    const zoomOutBtn = document.createElement('button');
+    zoomOutBtn.textContent = '−';
+    zoomOutBtn.title = 'Zoom Out';
+    zoomOutBtn.style.width = '35px';
+    zoomOutBtn.style.height = '35px';
+    zoomOutBtn.style.fontSize = '18px';
+    zoomOutBtn.style.border = '1px solid #ccc';
+    zoomOutBtn.style.backgroundColor = '#fff';
+    zoomOutBtn.style.cursor = 'pointer';
+    zoomOutBtn.style.borderRadius = '3px';
+    zoomOutBtn.onclick = () => {
+        const currentScale = graph.getScale();
+        graph.moveTo({ scale: currentScale * 0.8 });
+    };
+
+    // 리셋 버튼
+    const resetBtn = document.createElement('button');
+    resetBtn.textContent = '⌂';
+    resetBtn.title = 'Reset View';
+    resetBtn.style.width = '35px';
+    resetBtn.style.height = '35px';
+    resetBtn.style.fontSize = '16px';
+    resetBtn.style.border = '1px solid #ccc';
+    resetBtn.style.backgroundColor = '#fff';
+    resetBtn.style.cursor = 'pointer';
+    resetBtn.style.borderRadius = '3px';
+    resetBtn.onclick = () => {
+        graph.fit({
+            animation: {
+                duration: 500,
+                easingFunction: 'easeInOutQuart'
+            }
+        });
+    };
+
+    controlPanel.appendChild(zoomInBtn);
+    controlPanel.appendChild(zoomOutBtn);
+    controlPanel.appendChild(resetBtn);
+
+    container.style.position = 'relative';
+    container.appendChild(controlPanel);
+}
+
+// 노드 hover 효과 개선
+let hoveredNode = null;
+let originalNodeProperties = {};
+
+graph.on("hoverNode", function(params) {
+    const nodeId = params.node;
+    if (hoveredNode !== nodeId) {
+        // 이전 hover 노드 복원
+        if (hoveredNode !== null && originalNodeProperties[hoveredNode]) {
+            nodes.update({
+                id: hoveredNode,
+                ...originalNodeProperties[hoveredNode]
+            });
+        }
+        
+        // 현재 노드 속성 저장 및 확대
+        const node = nodes.get(nodeId);
+        hoveredNode = nodeId;
+        originalNodeProperties[nodeId] = {
+            value: node.value,
+            font: node.font ? {...node.font} : undefined
+        };
+        
+        nodes.update({
+            id: nodeId,
+            value: Math.max(node.value * 1.5, 15),
+            font: {
+                ...node.font,
+                size: Math.max((node.font && node.font.size) || 14, 16),
+                strokeWidth: 2
+            }
+        });
+    }
+});
+
+graph.on("blurNode", function(params) {
+    const nodeId = params.node;
+    if (hoveredNode === nodeId && originalNodeProperties[nodeId]) {
+        nodes.update({
+            id: nodeId,
+            ...originalNodeProperties[nodeId]
+        });
+        hoveredNode = null;
+    }
+});
+
+// 그래프가 준비되면 줌 컨트롤 추가
+addZoomControls();
