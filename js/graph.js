@@ -13,13 +13,20 @@ if (curr_url.endsWith("/")) {
     curr_url = curr_url.slice(0, -1);
 }
 
-// 노드 이름 줄이기 함수
+// 노드 이름 최적화 함수 - 숫자만 추출
 function truncateNodeLabel(label, maxLength = 15) {
     if (!label) return '';
     
     // 파일 확장자 제거
     label = label.replace(/\.(md|txt|html|pdf)$/i, '');
     
+    // 숫자 패턴 추출 (파일명이 숫자로 시작하는 경우)
+    const numberMatch = label.match(/^(\d+)/);
+    if (numberMatch) {
+        return numberMatch[1]; // 앞의 숫자만 반환
+    }
+    
+    // 숫자가 없는 경우 기존 로직 적용
     // 특수 문자나 숫자로 시작하는 부분 제거 (예: "01. ", "- ", "# " 등)
     label = label.replace(/^[\d\s\-#*\.]+/, '');
     
@@ -51,7 +58,7 @@ function truncateNodeLabel(label, maxLength = 15) {
         }
     }
     
-    return label;
+    return label || '?'; // 빈 라벨인 경우 물음표 표시
 }
 var container = document.getElementById("graph");
 
@@ -133,8 +140,8 @@ if (curr_node) {
     });
 }
 
-// Construct graph
-var options = 
+// Construct graph with enhanced spacing options
+var baseOptions = 
         {
         	nodes: {
         		shape: "dot",
@@ -168,6 +175,38 @@ var options =
         	},
         }
         ;
+
+// Enhanced options for better node spacing
+var options = {
+    ...baseOptions,
+    physics: {
+        enabled: true,
+        repulsion: {
+            nodeDistance: 200, // 노드 간 기본 거리
+            centralGravity: 0.1,
+            springLength: 150,
+            springConstant: 0.05,
+            damping: 0.1
+        },
+        solver: 'repulsion'
+    },
+    layout: {
+        improvedLayout: true
+    },
+    nodes: {
+        ...baseOptions.nodes,
+        margin: {
+            top: 10,
+            right: 10,
+            bottom: 10,
+            left: 10
+        },
+        widthConstraint: {
+            minimum: 50,
+            maximum: 100
+        }
+    }
+};
 
 var graph = new vis.Network(
     container,
@@ -338,15 +377,55 @@ graph.on("blurNode", function(params) {
 // 그래프가 준비되면 줌 컨트롤 추가
 addZoomControls();
 
+// 노드 간격 조절 함수
+function updateNodeSpacing(distance) {
+    if (!graph) return;
+    
+    const newOptions = {
+        physics: {
+            enabled: true,
+            repulsion: {
+                nodeDistance: distance,
+                centralGravity: 0.1,
+                springLength: distance * 0.75,
+                springConstant: 0.05,
+                damping: 0.1
+            },
+            solver: 'repulsion'
+        }
+    };
+    
+    graph.setOptions(newOptions);
+    
+    // 일시적으로 physics를 활성화하여 재배치
+    setTimeout(() => {
+        graph.stabilize();
+    }, 100);
+}
+
 // 모달 기능 추가
 function initializeGraphModal() {
     const openModalBtn = document.getElementById('openGraphModal');
     const modal = document.getElementById('graphModal');
     const closeModalBtn = document.getElementById('closeGraphModal');
     const modalContent = modal ? modal.querySelector('.graph-modal-content') : null;
+    const spacingSlider = document.getElementById('nodeSpacing');
+    const spacingValue = document.getElementById('spacingValue');
     
     if (!openModalBtn || !modal || !closeModalBtn || !modalContent) {
         return; // 모달 요소가 없으면 종료
+    }
+    
+    // 간격 조절 슬라이더 이벤트
+    if (spacingSlider && spacingValue) {
+        spacingSlider.addEventListener('input', function() {
+            const distance = parseInt(this.value);
+            spacingValue.textContent = distance;
+            updateNodeSpacing(distance);
+        });
+        
+        // 초기값 설정
+        spacingValue.textContent = spacingSlider.value;
     }
     
     // 모달 닫기 함수 - 부드러운 애니메이션 적용
@@ -378,6 +457,11 @@ function initializeGraphModal() {
                         easingFunction: 'easeInOutQuart'
                     }
                 });
+                
+                // 간격 조절 슬라이더의 현재 값으로 초기화
+                if (spacingSlider) {
+                    updateNodeSpacing(parseInt(spacingSlider.value));
+                }
             }
         }, 100);
     });
