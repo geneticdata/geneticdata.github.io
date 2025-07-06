@@ -280,3 +280,64 @@ graph.on("blurNode", function(params) {
 
 // 그래프가 준비되면 줌 컨트롤 추가
 addZoomControls();
+
+// 모달 기능 추가
+function initializeGraphModal() {
+    const openModalBtn = document.getElementById('openGraphModal');
+    const modal = document.getElementById('graphModal');
+    const closeModalBtn = document.getElementById('closeGraphModal');
+    
+    if (!openModalBtn || !modal || !closeModalBtn) {
+        return; // 모달 요소가 없으면 종료
+    }
+    
+    // 모달 열기
+    openModalBtn.addEventListener('click', function() {
+        modal.classList.add('show');
+        modal.style.display = 'flex';
+        
+        // 모달이 열린 후 그래프 크기 조정
+        setTimeout(() => {
+            if (graph) {
+                graph.redraw();
+                graph.fit({
+                    animation: {
+                        duration: 500,
+                        easingFunction: 'easeInOutQuart'
+                    }
+                });
+            }
+        }, 100);
+    });
+    
+    // 모달 닫기 (X 버튼)
+    closeModalBtn.addEventListener('click', function() {
+        modal.classList.remove('show');
+        setTimeout(() => {
+            modal.style.display = 'none';
+        }, 300);
+    });
+    
+    // 모달 닫기 (배경 클릭)
+    modal.addEventListener('click', function(e) {
+        if (e.target === modal) {
+            modal.classList.remove('show');
+            setTimeout(() => {
+                modal.style.display = 'none';
+            }, 300);
+        }
+    });
+    
+    // ESC 키로 모달 닫기
+    document.addEventListener('keydown', function(e) {
+        if (e.key === 'Escape' && modal.classList.contains('show')) {
+            modal.classList.remove('show');
+            setTimeout(() => {
+                modal.style.display = 'none';
+            }, 300);
+        }
+    });
+}
+
+// DOM이 로드되면 모달 초기화
+document.addEventListener('DOMContentLoaded', initializeGraphModal);
