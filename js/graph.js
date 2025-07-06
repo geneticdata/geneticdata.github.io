@@ -140,7 +140,7 @@ graph.once("afterDrawing", function () {
     if (curr_node) {
         if (!graph_is_local) {
             graph.focus(curr_node.id, {
-                scale: 0.8,
+                scale: Math.max(1.0, Math.min(1.8, container.clientWidth / 600)),
                 locked: true,
             });
         }
@@ -151,7 +151,7 @@ graph.once("afterDrawing", function () {
                 x: 0,
                 y: -clientHeight / 2,
             },
-            scale: graph.getScale() * 0.9,
+            scale: Math.max(0.8, Math.min(1.5, container.clientWidth / 800)),
         });
     }
 });
@@ -213,7 +213,10 @@ function addZoomControls() {
     resetBtn.style.cursor = 'pointer';
     resetBtn.style.borderRadius = '3px';
     resetBtn.onclick = () => {
-        graph.fit({
+        const optimalScale = Math.max(1.0, Math.min(1.5, container.clientWidth / 800));
+        graph.moveTo({
+            position: { x: 0, y: 0 },
+            scale: optimalScale,
             animation: {
                 duration: 500,
                 easingFunction: 'easeInOutQuart'
