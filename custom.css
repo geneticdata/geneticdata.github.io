@@ -1,1 +1,192 @@
-﻿.collapsible-section{position:relative}.collapsible-section:hover{cursor:pointer;text-decoration:underline}.collapsible-section:after{content:url("/assets/arrowdown.svg");font-size:.8rem;width:20px;height:20px;float:right}.collapsible-section.open:after{content:url("/assets/arrowup.svg")}.dark .collapsible-section:after,.dark .collapsible-section.open:after{filter:brightness(150%)}.docs-links .collapsible-wrapper{overflow:hidden;transition:height .5s ease-out}.docs-sidebar{max-height:calc(100vh - 120px);overflow-y:scroll;padding-bottom:50px;padding-right:8px;}.docs-navigation{max-height:calc(100vh - 120px);overflow-y:scroll;padding-right:8px;padding-bottom:30px}.docs-links{max-height:calc(100vh - 120px);overflow-y:scroll;padding-right:8px;padding-bottom:30px}.docs-sidebar::-webkit-scrollbar,.docs-navigation::-webkit-scrollbar,.docs-links::-webkit-scrollbar{width:8px;}.docs-sidebar::-webkit-scrollbar-track,.docs-navigation::-webkit-scrollbar-track,.docs-links::-webkit-scrollbar-track{background:#e0e0e0;border-radius:4px}.docs-sidebar::-webkit-scrollbar-thumb,.docs-navigation::-webkit-scrollbar-thumb,.docs-links::-webkit-scrollbar-thumb{background:#888;border-radius:4px;border:1px solid #666;}.docs-sidebar::-webkit-scrollbar-thumb:hover,.docs-navigation::-webkit-scrollbar-thumb:hover,.docs-links::-webkit-scrollbar-thumb:hover{background:#555;}.docs-sidebar,.docs-navigation,.docs-links{scrollbar-width:auto;scrollbar-color:#888 #e0e0e0}#search{font-family:"Noto Sans KR","Malgun Gothic","맑은 고딕",sans-serif}#suggestions{font-family:"Noto Sans KR","Malgun Gothic","맑은 고딕",sans-serif}.rich-link-card{border:1px solid #ddd !important;margin:20px;border-radius:10px;display:flex;text-decoration:none !important}.rich-link-card-container{position:relative}.rich-link-card-container::after{position:absolute;content:" ";width:100%;height:1px}.rich-link-card .rich-link-image-container{height:140px;width:75%;max-width:50%;min-width:120px;overflow:hidden;background-color:#ddd !important;border-radius:10px 0 0 10px}.rich-link-card .rich-link-image{background-position:center center;background-size:cover;background-repeat:no-repeat;padding-bottom:140px;height:80%;width:auto}.rich-link-card .rich-link-card-text{padding:20px;overflow:hidden;font-size:14px}.rich-link-card .rich-link-card-title{font-family:sans-serif;font-size:16px;margin:0 0 4px 0;display:-webkit-box;-webkit-line-clamp:1;-webkit-box-orient:vertical;overflow:hidden;color:var(--text-normal)}.rich-link-card .rich-link-card-description{font-family:sans-serif;font-size:14px;margin:0;color:var(--text-muted);display:-webkit-box;-webkit-line-clamp:2;-webkit-box-orient:vertical;overflow:hidden}.rich-link-card .rich-link-href{font-family:sans-serif;font-size:14px;margin:0;color:var(--text-faint);display:-webkit-box;-webkit-line-clamp:1;text-decoration:none;-webkit-box-orient:vertical;overflow:hidden;padding-right:1rem;direction:rtl}
+.collapsible-section{position:relative}.collapsible-section:hover{cursor:pointer;text-decoration:underline}.collapsible-section:after{content:url("/assets/arrowdown.svg");font-size:.8rem;width:20px;height:20px;float:right}.collapsible-section.open:after{content:url("/assets/arrowup.svg")}.dark .collapsible-section:after,.dark .collapsible-section.open:after{filter:brightness(150%)}.docs-links .collapsible-wrapper{overflow:hidden;transition:height .5s ease-out}
+
+/* 사이드바 스크롤 문제 해결 - 최강 버전 */
+body .docs-sidebar,
+body div.docs-sidebar,
+body .col-lg-5.col-xl-4.docs-sidebar,
+.row .docs-sidebar,
+.row div.docs-sidebar,
+.row .col-lg-5.col-xl-4.docs-sidebar {
+    /* main.css의 모든 스크롤바 숨김 스타일 완전 덮어쓰기 */
+    -ms-overflow-style: auto !important;
+    scrollbar-width: thin !important;
+    scrollbar-gutter: stable !important;
+    
+    /* 레이아웃 속성 */
+    max-height: calc(100vh - 120px) !important;
+    overflow-y: auto !important;
+    overflow-x: hidden !important;
+    padding-bottom: 50px !important;
+    
+    /* Firefox용 스크롤바 색상 */
+    scrollbar-color: #c1c1c1 transparent !important;
+}
+
+/* 다크 모드용 Firefox 스크롤바 */
+body.dark .docs-sidebar,
+body.dark div.docs-sidebar,
+body.dark .col-lg-5.col-xl-4.docs-sidebar,
+.dark .row .docs-sidebar,
+.dark .row div.docs-sidebar,
+.dark .row .col-lg-5.col-xl-4.docs-sidebar {
+    scrollbar-color: #555 transparent !important;
+}
+
+/* 웹킷 브라우저용 스크롤바 - 최강 덮어쓰기 */
+body .docs-sidebar::-webkit-scrollbar,
+body div.docs-sidebar::-webkit-scrollbar,
+body .col-lg-5.col-xl-4.docs-sidebar::-webkit-scrollbar,
+.row .docs-sidebar::-webkit-scrollbar,
+.row div.docs-sidebar::-webkit-scrollbar,
+.row .col-lg-5.col-xl-4.docs-sidebar::-webkit-scrollbar {
+    display: block !important;
+    width: 6px !important;
+    background: transparent !important;
+}
+
+body .docs-sidebar::-webkit-scrollbar-track,
+body div.docs-sidebar::-webkit-scrollbar-track,
+body .col-lg-5.col-xl-4.docs-sidebar::-webkit-scrollbar-track,
+.row .docs-sidebar::-webkit-scrollbar-track,
+.row div.docs-sidebar::-webkit-scrollbar-track,
+.row .col-lg-5.col-xl-4.docs-sidebar::-webkit-scrollbar-track {
+    background: transparent !important;
+    border-radius: 3px !important;
+}
+
+body .docs-sidebar::-webkit-scrollbar-thumb,
+body div.docs-sidebar::-webkit-scrollbar-thumb,
+body .col-lg-5.col-xl-4.docs-sidebar::-webkit-scrollbar-thumb,
+.row .docs-sidebar::-webkit-scrollbar-thumb,
+.row div.docs-sidebar::-webkit-scrollbar-thumb,
+.row .col-lg-5.col-xl-4.docs-sidebar::-webkit-scrollbar-thumb {
+    background: #c1c1c1 !important;
+    border-radius: 3px !important;
+    transition: background-color 0.2s ease !important;
+}
+
+body .docs-sidebar::-webkit-scrollbar-thumb:hover,
+body div.docs-sidebar::-webkit-scrollbar-thumb:hover,
+body .col-lg-5.col-xl-4.docs-sidebar::-webkit-scrollbar-thumb:hover,
+.row .docs-sidebar::-webkit-scrollbar-thumb:hover,
+.row div.docs-sidebar::-webkit-scrollbar-thumb:hover,
+.row .col-lg-5.col-xl-4.docs-sidebar::-webkit-scrollbar-thumb:hover {
+    background: #a8a8a8 !important;
+}
+
+/* 다크 모드용 웹킷 스크롤바 */
+body.dark .docs-sidebar::-webkit-scrollbar-thumb,
+body.dark div.docs-sidebar::-webkit-scrollbar-thumb,
+body.dark .col-lg-5.col-xl-4.docs-sidebar::-webkit-scrollbar-thumb,
+.dark .row .docs-sidebar::-webkit-scrollbar-thumb,
+.dark .row div.docs-sidebar::-webkit-scrollbar-thumb,
+.dark .row .col-lg-5.col-xl-4.docs-sidebar::-webkit-scrollbar-thumb {
+    background: #555 !important;
+}
+
+body.dark .docs-sidebar::-webkit-scrollbar-thumb:hover,
+body.dark div.docs-sidebar::-webkit-scrollbar-thumb:hover,
+body.dark .col-lg-5.col-xl-4.docs-sidebar::-webkit-scrollbar-thumb:hover,
+.dark .row .docs-sidebar::-webkit-scrollbar-thumb:hover,
+.dark .row div.docs-sidebar::-webkit-scrollbar-thumb:hover,
+.dark .row .col-lg-5.col-xl-4.docs-sidebar::-webkit-scrollbar-thumb:hover {
+    background: #777 !important;
+}
+
+/* 그래프 노드 영역 크기 문제 해결 - 최강 버전 */
+body .docs-sidebar .docs-graph,
+body .docs-sidebar #graph,
+body div.docs-graph,
+body #graph,
+.row .docs-sidebar .docs-graph,
+.row .docs-sidebar #graph,
+.row div.docs-graph,
+.col-lg-5 .docs-graph,
+.col-lg-5 #graph,
+.col-xl-4 .docs-graph,
+.col-xl-4 #graph {
+    /* 그래프가 충분한 공간을 차지하도록 강제 설정 */
+    min-height: 250px !important;
+    max-height: 350px !important;
+    height: 300px !important;
+    width: 100% !important;
+    margin-bottom: 30px !important;
+    margin-top: 10px !important;
+    
+    /* aspect-ratio와 레이아웃 강제 적용 */
+    flex-shrink: 0 !important;
+    overflow: visible !important;
+    display: block !important;
+    position: relative !important;
+}
+
+/* 모바일에서 그래프 크기 강제 조정 */
+@media (max-width: 767px) {
+    body .docs-sidebar .docs-graph,
+    body .docs-sidebar #graph,
+    body div.docs-graph,
+    body #graph,
+    .row .docs-sidebar .docs-graph,
+    .row .docs-sidebar #graph,
+    .row div.docs-graph {
+        min-height: 180px !important;
+        max-height: 280px !important;
+        height: 220px !important;
+        aspect-ratio: 1.9 !important;
+    }
+}
+
+/* 데스크톱에서 그래프 크기 강제 조정 */
+@media (min-width: 768px) {
+    body .docs-sidebar .docs-graph,
+    body .docs-sidebar #graph,
+    body div.docs-graph,
+    body #graph,
+    .row .docs-sidebar .docs-graph,
+    .row .docs-sidebar #graph,
+    .row div.docs-graph {
+        min-height: 250px !important;
+        max-height: 350px !important;
+        height: 300px !important;
+        aspect-ratio: 1 !important;
+    }
+}
+
+/* 사이드바 내부 요소들의 overflow 강제 제거 */
+body .docs-sidebar .docs-navigation,
+body .docs-sidebar .docs-links,
+body .docs-sidebar nav,
+body .docs-sidebar ul,
+body .docs-sidebar .list-unstyled,
+body .docs-sidebar .collapsible-wrapper,
+.row .docs-sidebar .docs-navigation,
+.row .docs-sidebar .docs-links,
+.row .docs-sidebar nav,
+.row .docs-sidebar ul,
+.row .docs-sidebar .list-unstyled,
+.row .docs-sidebar .collapsible-wrapper {
+    overflow: visible !important;
+    max-height: none !important;
+    height: auto !important;
+    -ms-overflow-style: visible !important;
+    scrollbar-width: auto !important;
+}
+
+/* 사이드바 내부 요소들의 웹킷 스크롤바 강제 제거 */
+body .docs-sidebar .docs-navigation::-webkit-scrollbar,
+body .docs-sidebar .docs-links::-webkit-scrollbar,
+body .docs-sidebar nav::-webkit-scrollbar,
+body .docs-sidebar ul::-webkit-scrollbar,
+body .docs-sidebar .list-unstyled::-webkit-scrollbar,
+body .docs-sidebar .collapsible-wrapper::-webkit-scrollbar,
+.row .docs-sidebar .docs-navigation::-webkit-scrollbar,
+.row .docs-sidebar .docs-links::-webkit-scrollbar,
+.row .docs-sidebar nav::-webkit-scrollbar,
+.row .docs-sidebar ul::-webkit-scrollbar,
+.row .docs-sidebar .list-unstyled::-webkit-scrollbar,
+.row .docs-sidebar .collapsible-wrapper::-webkit-scrollbar {
+    display: none !important;
+    width: 0 !important;
+}
+
+.rich-link-card{border:1px solid #ddd !important;margin:20px;border-radius:10px;display:flex;text-decoration:none !important}.rich-link-card-container{position:relative}.rich-link-card-container::after{position:absolute;content:" ";width:100%;height:1px}.rich-link-card .rich-link-image-container{height:140px;width:75%;max-width:50%;min-width:120px;overflow:hidden;background-color:#ddd !important;border-radius:10px 0 0 10px}.rich-link-card .rich-link-image{background-position:center center;background-size:cover;background-repeat:no-repeat;padding-bottom:140px;height:80%;width:auto}.rich-link-card .rich-link-card-text{padding:20px;overflow:hidden;font-size:14px}.rich-link-card .rich-link-card-title{font-family:sans-serif;font-size:16px;margin:0 0 4px 0;display:-webkit-box;-webkit-line-clamp:1;-webkit-box-orient:vertical;overflow:hidden;color:var(--text-normal)}.rich-link-card .rich-link-card-description{font-family:sans-serif;font-size:14px;margin:0;color:var(--text-muted);display:-webkit-box;-webkit-line-clamp:2;-webkit-box-orient:vertical;overflow:hidden}.rich-link-card .rich-link-href{font-family:sans-serif;font-size:14px;margin:0;color:var(--text-faint);display:-webkit-box;-webkit-line-clamp:1;text-decoration:none;-webkit-box-orient:vertical;overflow:hidden;padding-right:1rem;direction:rtl}
