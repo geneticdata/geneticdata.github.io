@@ -200,6 +200,7 @@ body .docs-sidebar .collapsible-wrapper::-webkit-scrollbar,
     background-color: rgba(0, 0, 0, 0.7);
     backdrop-filter: blur(4px);
     animation: fadeIn 0.3s ease-out;
+    transition: opacity 0.3s ease-out;
 }
 
 .graph-modal.show {
@@ -220,6 +221,11 @@ body .docs-sidebar .collapsible-wrapper::-webkit-scrollbar,
     flex-direction: column;
     overflow: hidden;
     animation: slideIn 0.3s ease-out;
+    transition: all 0.3s ease-out;
+}
+
+.graph-modal-content.closing {
+    animation: slideOut 0.3s ease-out;
 }
 
 .graph-modal-header {
@@ -304,20 +310,40 @@ body .docs-sidebar .collapsible-wrapper::-webkit-scrollbar,
     background: #2a2a2a !important;
 }
 
-/* 모달 애니메이션 */
+/* 그래프 노드 다크모드 스타일 개선 */
+.dark #graph .vis-network canvas {
+    filter: brightness(0.9) contrast(1.1);
+}
+
+/* 모달 애니메이션 - 부드럽게 개선 */
 @keyframes fadeIn {
-    from { opacity: 0; }
-    to { opacity: 1; }
+    from { 
+        opacity: 0; 
+    }
+    to { 
+        opacity: 1; 
+    }
 }
 
 @keyframes slideIn {
     from {
         opacity: 0;
-        transform: scale(0.9) translateY(-20px);
+        transform: scale(0.95);
     }
     to {
         opacity: 1;
-        transform: scale(1) translateY(0);
+        transform: scale(1);
+    }
+}
+
+@keyframes slideOut {
+    from {
+        opacity: 1;
+        transform: scale(1);
+    }
+    to {
+        opacity: 0;
+        transform: scale(0.95);
     }
 }
 

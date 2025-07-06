@@ -13,7 +13,46 @@ if (curr_url.endsWith("/")) {
     curr_url = curr_url.slice(0, -1);
 }
 
-// Get graph element
+// 노드 이름 줄이기 함수
+function truncateNodeLabel(label, maxLength = 15) {
+    if (!label) return '';
+    
+    // 파일 확장자 제거
+    label = label.replace(/\.(md|txt|html|pdf)$/i, '');
+    
+    // 특수 문자나 숫자로 시작하는 부분 제거 (예: "01. ", "- ", "# " 등)
+    label = label.replace(/^[\d\s\-#*\.]+/, '');
+    
+    // 괄호 안의 내용 제거
+    label = label.replace(/\([^)]*\)/g, '');
+    label = label.replace(/\[[^\]]*\]/g, '');
+    
+    // 여러 공백을 하나로 변환 및 앞뒤 공백 제거
+    label = label.replace(/\s+/g, ' ').trim();
+    
+    // 길이 제한
+    if (label.length > maxLength) {
+        // 단어 단위로 자르기 시도
+        const words = label.split(' ');
+        let result = '';
+        for (const word of words) {
+            if ((result + word).length <= maxLength - 3) {
+                result += (result ? ' ' : '') + word;
+            } else {
+                break;
+            }
+        }
+        
+        if (result.length > 0) {
+            return result + '...';
+        } else {
+            // 단어가 너무 길면 문자 단위로 자르기
+            return label.substring(0, maxLength - 3) + '...';
+        }
+    }
+    
+    return label;
+}
 var container = document.getElementById("graph");
 
 // Parse nodes and edges
@@ -26,6 +65,24 @@ try {
 }
 var nodes = null;
 var edges = new vis.DataSet(graph_data.edges);
+
+// 노드 라벨 최적화 적용
+var optimizedNodes = graph_data.nodes.map(node => {
+    const isDarkMode = isDark();
+    return {
+        ...node,
+        label: truncateNodeLabel(node.label || node.title || node.id, 15),
+        title: node.label || node.title || node.id, // 원본 제목은 tooltip으로 보존
+        font: {
+            size: 12,
+            face: 'arial',
+            color: isDarkMode ? '#ffffff' : '#333333',
+            background: isDarkMode ? 'rgba(42,42,42,0.8)' : 'rgba(255,255,255,0.8)',
+            strokeWidth: 1,
+            strokeColor: isDarkMode ? '#2a2a2a' : '#ffffff'
+        }
+    };
+});
 
 if (curr_node.length > 0) {
     curr_node = curr_node[0];
@@ -42,17 +99,17 @@ if (curr_node.length > 0) {
 
     if (graph_is_local) {
         nodes = new vis.DataSet(
-            graph_data.nodes.filter(
+            optimizedNodes.filter(
                 (node) =>
                     node.id == curr_node.id || connected_nodes.includes(node.id)
             )
         );
     } else {
-        nodes = new vis.DataSet(graph_data.nodes);
+        nodes = new vis.DataSet(optimizedNodes);
     }
 } else {
     curr_node = null;
-    nodes = new vis.DataSet(graph_data.nodes);
+    nodes = new vis.DataSet(optimizedNodes);
 }
 
 // Get nodes and edges from generated javascript
@@ -286,15 +343,30 @@ function initializeGraphModal() {
     const openModalBtn = document.getElementById('openGraphModal');
     const modal = document.getElementById('graphModal');
     const closeModalBtn = document.getElementById('closeGraphModal');
+    const modalContent = modal ? modal.querySelector('.graph-modal-content') : null;
     
-    if (!openModalBtn || !modal || !closeModalBtn) {
+    if (!openModalBtn || !modal || !closeModalBtn || !modalContent) {
         return; // 모달 요소가 없으면 종료
+    }
+    
+    // 모달 닫기 함수 - 부드러운 애니메이션 적용
+    function closeModal() {
+        modalContent.classList.add('closing');
+        modal.style.opacity = '0';
+        
+        setTimeout(() => {
+            modal.classList.remove('show');
+            modal.style.display = 'none';
+            modal.style.opacity = '1';
+            modalContent.classList.remove('closing');
+        }, 300);
     }
     
     // 모달 열기
     openModalBtn.addEventListener('click', function() {
         modal.classList.add('show');
         modal.style.display = 'flex';
+        modalContent.classList.remove('closing');
         
         // 모달이 열린 후 그래프 크기 조정
         setTimeout(() => {
@@ -311,30 +383,19 @@ function initializeGraphModal() {
     });
     
     // 모달 닫기 (X 버튼)
-    closeModalBtn.addEventListener('click', function() {
-        modal.classList.remove('show');
-        setTimeout(() => {
-            modal.style.display = 'none';
-        }, 300);
-    });
+    closeModalBtn.addEventListener('click', closeModal);
     
     // 모달 닫기 (배경 클릭)
     modal.addEventListener('click', function(e) {
         if (e.target === modal) {
-            modal.classList.remove('show');
-            setTimeout(() => {
-                modal.style.display = 'none';
-            }, 300);
+            closeModal();
         }
     });
     
     // ESC 키로 모달 닫기
     document.addEventListener('keydown', function(e) {
         if (e.key === 'Escape' && modal.classList.contains('show')) {
-            modal.classList.remove('show');
-            setTimeout(() => {
-                modal.style.display = 'none';
-            }, 300);
+            closeModal();
         }
     });
 }
